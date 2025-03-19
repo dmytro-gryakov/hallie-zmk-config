@@ -32,37 +32,46 @@
 &mt { quick_tap_ms = <200>; };
 
 / {
+    macros {
+        arrow_fn: arrow_fn {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp EQUAL &kp GREATER_THAN>;
+            label = "ARROW_FN";
+        };
+    };
+
     keymap {
         compatible = "zmk,keymap";
 
         default_layer {
             bindings = <
-&kp ESC    &kp Q  &kp W  &kp E    &kp R    &kp T        &kp Y      &kp U    &kp I      &kp O    &kp P      &kp LEFT_BRACE
-&kp TAB    &kp A  &kp S  &kp D    &kp F    &kp G        &kp H      &kp J    &kp K      &kp L    &kp SEMI   &kp SQT
-&kp LSHFT  &kp Z  &kp X  &kp C    &kp V    &kp B        &kp N      &kp M    &kp COMMA  &kp DOT  &kp SLASH  &kp RIGHT_BRACE
-                         &mo ADJ  &mo LWR  &kp SPACE    &kp ENTER  &mo LWR  &mo RSE
+&kp ESC       &kp Q  &kp W           &kp E        &kp R             &kp T                 &kp Y        &kp U              &kp I        &kp O            &kp P      &kp LEFT_BRACE
+&kp TAB       &kp A  &mt LEFT_ALT S  &mt LCTRL D  &mt LEFT_SHIFT F  &kp G                 &kp H        &mt RIGHT_SHIFT J  &mt RCTRL K  &mt RIGHT_ALT L  &kp SEMI   &kp SQT
+&kp LEFT_GUI  &kp Z  &kp X           &kp C        &kp V             &kp B                 &kp N        &kp M              &kp COMMA    &kp DOT          &kp SLASH  &kp RIGHT_BRACE
+                                     &mo 3        &lt 1 DELETE      &mt LEFT_GUI SPACE    &lt 5 ENTER  &lt 4 BACKSPACE    &mo 2
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP &scroll_u_d>;
         };
 
-        lower_layer {
+        nums_layer {
             bindings = <
-&kp GRAVE  &none      &none      &none        &none     &none        &none      &kp N7   &kp N8   &kp N9  &kp KP_MULTIPLY  &kp KP_DIVIDE
-&kp TAB    &none      &none      &none        &kp LBKT  &kp RBKT     &none      &kp N4   &kp N5   &kp N6  &kp KP_PLUS      &kp KP_MINUS
-&kp LSHFT  &kp EQUAL  &kp MINUS  &kp KP_PLUS  &kp LBRC  &kp RBRC     &kp N0     &kp N1   &kp N2   &kp N3  &kp KP_COMMA     &kp DOT
-                                 &mo ADJ      &mo LWR   &kp SPACE    &kp ENTER  &mo LWR  &mo RSE
+&kp GRAVE  &none      &none      &none        &none     &none        &none      &kp N7  &kp N8  &kp N9  &kp KP_MULTIPLY  &kp KP_DIVIDE
+&kp TAB    &none      &none      &none        &kp LBKT  &kp RBKT     &none      &kp N4  &kp N5  &kp N6  &kp KP_PLUS      &kp KP_MINUS
+&kp LSHFT  &kp EQUAL  &kp MINUS  &kp KP_PLUS  &kp LBRC  &kp RBRC     &kp N0     &kp N1  &kp N2  &kp N3  &kp KP_COMMA     &kp DOT
+                                 &mo 3        &mo 1     &kp SPACE    &kp ENTER  &to 1   &mo 2
             >;
 
             sensor-bindings = <&inc_dec_kp PG_DN PG_UP &scroll_l_r>;
         };
 
-        raise_layer {
+        nav_layer {
             bindings = <
-&kp F1  &kp F2   &kp F3     &kp F4       &kp F5   &kp F6       &kp F7     &kp F8    &kp F9    &kp F10    &kp F11  &kp F12
-&none   &kp INS  &kp PSCRN  &kp K_CMENU  &none    &none        &kp PG_UP  &kp HOME  &kp UP    &kp END    &none    &none
-&none   &none    &none      &none        &none    &none        &kp PG_DN  &kp LEFT  &kp DOWN  &kp RIGHT  &kp DEL  &kp BSPC
-                            &mo ADJ      &mo LWR  &kp SPACE    &kp ENTER  &mo LWR   &mo RSE
+&kp F1  &kp F2   &kp F3     &kp F4       &kp F5  &kp F6       &kp F7     &kp F8    &kp F9    &kp F10    &kp F11  &kp F12
+&none   &kp INS  &kp PSCRN  &kp K_CMENU  &none   &none        &kp PG_UP  &kp HOME  &kp UP    &kp END    &none    &none
+&none   &none    &none      &none        &none   &none        &kp PG_DN  &kp LEFT  &kp DOWN  &kp RIGHT  &kp DEL  &kp BSPC
+                            &mo 3        &mo 1   &kp SPACE    &kp ENTER  &mo 1     &mo 2
             >;
 
             sensor-bindings = <&inc_dec_kp DOWN_ARROW UP_ARROW &inc_dec_kp RIGHT_ARROW LEFT_ARROW>;
@@ -70,18 +79,32 @@
 
         adjust_layer {
             bindings = <
-&out OUT_BLE  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2    &bt BT_CLR   &out OUT_USB    &none        &none        &none    &none  &none  &none
-&none         &none         &none         &none           &none        &none           &none        &none        &none    &none  &none  &none
-&sys_reset    &bootloader   &none         &studio_unlock  &ind IND_ON  &ind BAT_ST     &ind IND_ON  &ind BAT_ST  &none    &none  &none  &none
-                                          &mo ADJ         &mo LWR      &kp SPACE       &kp ENTER    &mo LWR      &mo RSE
+&out OUT_BLE  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2    &bt BT_CLR   &out OUT_USB    &none        &none        &none  &none  &none  &none
+&none         &none         &none         &none           &none        &none           &none        &none        &none  &none  &none  &none
+&sys_reset    &bootloader   &none         &studio_unlock  &ind IND_ON  &ind BAT_ST     &ind IND_ON  &ind BAT_ST  &none  &none  &none  &none
+                                          &mo 3           &mo 1        &kp SPACE       &kp ENTER    &mo 1        &mo 2
             >;
 
             sensor-bindings = <&inc_dec_kp DOWN_ARROW UP_ARROW &inc_dec_kp RIGHT_ARROW LEFT_ARROW>;
         };
 
-        extra-1 {  };
+        symbs_layer {
+            bindings = <
+&trans  &trans           &kp LESS_THAN  &kp GREATER_THAN  &kp UNDERSCORE  &kp HASH      &kp AMPERSAND  &kp LEFT_BRACKET      &kp RIGHT_BRACKET      &kp PERCENT   &trans  &trans
+&trans  &kp EXCLAMATION  &kp MINUS      &kp PLUS          &kp EQUAL       &kp KP_DOT    &kp PIPE       &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &kp QUESTION  &trans  &trans
+&trans  &trans           &kp SLASH      &kp ASTERISK      &kp BACKSLASH   &kp SEMI      &kp DOLLAR     &kp LEFT_BRACE        &kp RIGHT_BRACE        &kp AT_SIGN   &trans  &trans
+                                        &trans            &arrow_fn       &trans        &trans         &trans                &trans
+            >;
+        };
 
-        extra-2 {  };
+        hotkeys_layer {
+            bindings = <
+&trans  &trans  &trans  &trans               &trans  &trans    &trans              &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans               &trans  &trans    &trans              &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &kp C_AL_CALCULATOR  &trans  &trans    &kp LA(LEFT_SHIFT)  &trans  &trans  &trans  &trans  &trans
+                        &trans               &trans  &trans    &trans              &trans  &trans
+            >;
+        };
 
         extra3 { status = "reserved"; };
 
