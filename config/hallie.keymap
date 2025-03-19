@@ -39,6 +39,13 @@
             bindings = <&kp EQUAL &kp GREATER_THAN>;
             label = "ARROW_FN";
         };
+
+        null_conditional_operator: null_conditional_operator {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp QUESTION &kp KP_DOT>;
+            label = "NULL_CONDITIONAL_OPERATOR";
+        };
     };
 
     keymap {
@@ -46,10 +53,10 @@
 
         default_layer {
             bindings = <
-&kp ESC       &kp Q  &kp W           &kp E        &kp R             &kp T                 &kp Y        &kp U              &kp I        &kp O            &kp P      &kp LEFT_BRACE
-&kp TAB       &kp A  &mt LEFT_ALT S  &mt LCTRL D  &mt LEFT_SHIFT F  &kp G                 &kp H        &mt RIGHT_SHIFT J  &mt RCTRL K  &mt RIGHT_ALT L  &kp SEMI   &kp SQT
-&kp LEFT_GUI  &kp Z  &kp X           &kp C        &kp V             &kp B                 &kp N        &kp M              &kp COMMA    &kp DOT          &kp SLASH  &kp RIGHT_BRACE
-                                     &mo 3        &lt 1 DELETE      &mt LEFT_GUI SPACE    &lt 5 ENTER  &lt 4 BACKSPACE    &mo 2
+&kp ESC         &kp Q  &kp W           &kp E        &kp R             &kp T                 &kp Y        &kp U              &kp I        &kp O            &kp P      &kp LEFT_BRACE
+&kp TAB         &kp A  &mt LEFT_ALT S  &mt LCTRL D  &mt LEFT_SHIFT F  &kp G                 &kp H        &mt RIGHT_SHIFT J  &mt RCTRL K  &mt RIGHT_ALT L  &kp SEMI   &kp SQT
+&kp LEFT_SHIFT  &kp Z  &kp X           &kp C        &kp V             &kp B                 &kp N        &kp M              &kp COMMA    &kp DOT          &kp SLASH  &kp RIGHT_BRACE
+                                       &mo 3        &lt 1 DELETE      &mt LEFT_GUI SPACE    &lt 5 ENTER  &lt 4 BACKSPACE    &mo 2
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP &scroll_u_d>;
@@ -68,10 +75,10 @@
 
         nav_layer {
             bindings = <
-&kp F1  &kp F2   &kp F3     &kp F4       &kp F5  &kp F6       &kp F7     &kp F8    &kp F9    &kp F10    &kp F11  &kp F12
-&none   &kp INS  &kp PSCRN  &kp K_CMENU  &none   &none        &kp PG_UP  &kp HOME  &kp UP    &kp END    &none    &none
-&none   &none    &none      &none        &none   &none        &kp PG_DN  &kp LEFT  &kp DOWN  &kp RIGHT  &kp DEL  &kp BSPC
-                            &mo 3        &mo 1   &kp SPACE    &kp ENTER  &mo 1     &mo 2
+&kp F1  &kp F2   &kp F3     &kp F4       &kp F5          &kp F6       &kp F7     &kp F8    &kp F9    &kp F10    &kp F11  &kp F12
+&none   &kp INS  &kp PSCRN  &kp K_CMENU  &kp LCTRL       &none        &kp PG_UP  &kp HOME  &kp UP    &kp END    &none    &none
+&none   &none    &none      &none        &none           &none        &kp PG_DN  &kp LEFT  &kp DOWN  &kp RIGHT  &kp DEL  &kp BSPC
+                            &none        &kp LEFT_SHIFT  &kp SPACE    &kp ENTER  &none     &none
             >;
 
             sensor-bindings = <&inc_dec_kp DOWN_ARROW UP_ARROW &inc_dec_kp RIGHT_ARROW LEFT_ARROW>;
@@ -90,19 +97,19 @@
 
         symbs_layer {
             bindings = <
-&trans  &trans           &kp LESS_THAN  &kp GREATER_THAN  &kp UNDERSCORE  &kp HASH      &kp AMPERSAND  &kp LEFT_BRACKET      &kp RIGHT_BRACKET      &kp PERCENT   &trans  &trans
-&trans  &kp EXCLAMATION  &kp MINUS      &kp PLUS          &kp EQUAL       &kp KP_DOT    &kp PIPE       &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &kp QUESTION  &trans  &trans
-&trans  &trans           &kp SLASH      &kp ASTERISK      &kp BACKSLASH   &kp SEMI      &kp DOLLAR     &kp LEFT_BRACE        &kp RIGHT_BRACE        &kp AT_SIGN   &trans  &trans
-                                        &trans            &arrow_fn       &trans        &trans         &trans                &trans
+&trans  &trans           &kp LESS_THAN  &kp GREATER_THAN            &kp UNDERSCORE  &kp HASH      &kp AMPERSAND  &kp LEFT_BRACKET      &kp RIGHT_BRACKET      &kp PERCENT   &trans     &trans
+&trans  &kp EXCLAMATION  &kp MINUS      &kp PLUS                    &kp EQUAL       &kp KP_DOT    &kp PIPE       &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &kp QUESTION  &kp GRAVE  &trans
+&trans  &trans           &kp SLASH      &kp ASTERISK                &kp BACKSLASH   &kp SEMI      &kp DOLLAR     &kp LEFT_BRACE        &kp RIGHT_BRACE        &kp AT_SIGN   &trans     &trans
+                                        &null_conditional_operator  &arrow_fn       &trans        &trans         &trans                &trans
             >;
         };
 
         hotkeys_layer {
             bindings = <
-&trans  &trans  &trans  &trans               &trans  &trans    &trans              &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans               &trans  &trans    &trans              &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &kp C_AL_CALCULATOR  &trans  &trans    &kp LA(LEFT_SHIFT)  &trans  &trans  &trans  &trans  &trans
-                        &trans               &trans  &trans    &trans              &trans  &trans
+&trans          &trans  &trans  &trans               &trans  &kp LC(LS(T))    &kp LC(KP_PLUS)     &kp LC(KP_MINUS)  &kp LG(LA(K))  &trans  &trans  &trans
+&trans          &trans  &trans  &trans               &trans  &trans           &kp LC(LS(SLASH))   &kp LC(SLASH)     &trans         &trans  &trans  &trans
+&kp LEFT_SHIFT  &trans  &trans  &kp C_AL_CALCULATOR  &trans  &trans           &kp LA(LEFT_SHIFT)  &trans            &trans         &trans  &trans  &trans
+                                &trans               &trans  &trans           &trans              &trans            &trans
             >;
         };
 
