@@ -79,9 +79,9 @@
             sensor-bindings = <&inc_dec_kp DOWN_ARROW UP_ARROW &inc_dec_kp RIGHT_ARROW LEFT_ARROW>;
         };
 
-        extra1 { status = "reserved"; };
+        extra-1 {  };
 
-        extra2 { status = "reserved"; };
+        extra-2 {  };
 
         extra3 { status = "reserved"; };
 
