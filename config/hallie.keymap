@@ -62,6 +62,7 @@
         go_to_ukr {
             bindings = <&switch_lang_go_layer>;
             key-positions = <9 8>;
+            layers = <0>;
         };
     };
 
