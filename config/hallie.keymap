@@ -50,7 +50,7 @@
         switch_lang_go_ukr_layer: switch_lang_go_layer {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&kp LC(LS(NUMBER_2))>, <&macro_wait_time 100>, <&tog 6>;
+            bindings = <&kp LC(LS(NUMBER_2))>, <&macro_wait_time 100>, <&to 6>;
 
             label = "SWITCH_LANG_GO_LAYER";
         };
@@ -58,7 +58,7 @@
         switch_lang_go_def_layer: switch_lang_go_def_layer {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&kp LC(LS(NUMBER_1))>, <&macro_wait_time 100>, <&tog 0>;
+            bindings = <&kp LC(LS(NUMBER_1))>, <&macro_wait_time 100>, <&to 0>;
 
             label = "SWITCH_LANG_GO_DEF_LAYER";
         };
@@ -161,12 +161,5 @@
         extra4 { status = "reserved"; };
     };
 
-    conditional_layers {
-        compatible = "zmk,conditional-layers";
-
-        test {
-            if-layers = <7>;
-            then-layer = <0>;
-        };
-    };
+    conditional_layers { compatible = "zmk,conditional-layers"; };
 };
