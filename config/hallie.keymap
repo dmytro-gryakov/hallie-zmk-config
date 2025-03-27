@@ -46,13 +46,20 @@
             bindings = <&kp QUESTION &kp KP_DOT>;
             label = "NULL_CONDITIONAL_OPERATOR";
         };
+
+        switch_lang_go_layer: switch_lang_go_layer {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LC(LS(KP_NUMBER_2)) &tog 6>;
+            label = "SWITCH_LANG_GO_LAYER";
+        };
     };
 
     combos {
         compatible = "zmk,combos";
 
         go_to_ukr {
-            bindings = <&tog 6>;
+            bindings = <&switch_lang_go_layer>;
             key-positions = <9 8>;
         };
     };
@@ -117,7 +124,7 @@
             bindings = <
 &trans          &trans  &trans  &trans               &trans  &kp LC(LS(T))    &kp LC(KP_PLUS)     &kp LC(KP_MINUS)  &kp LG(LA(K))  &trans  &trans  &trans
 &trans          &trans  &trans  &trans               &trans  &trans           &kp LC(LS(SLASH))   &kp LC(SLASH)     &trans         &trans  &trans  &trans
-&kp LEFT_SHIFT  &trans  &trans  &kp C_AL_CALCULATOR  &trans  &trans           &kp LA(LEFT_SHIFT)  &kp LS(F9)        &trans         &trans  &trans  &trans
+&kp LEFT_SHIFT  &trans  &trans  &kp C_AL_CALCULATOR  &trans  &trans           &kp LA(LEFT_SHIFT)  &trans            &trans         &trans  &trans  &trans
                                 &trans               &trans  &trans           &trans              &trans            &trans
             >;
         };
