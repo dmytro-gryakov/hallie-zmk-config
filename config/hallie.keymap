@@ -62,6 +62,20 @@
 
             label = "SWITCH_LANG_GO_DEF_LAYER";
         };
+
+        prop_macro: prop_macro {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp P &kp R &kp O &kp P>;
+            label = "PROP_MACRO";
+        };
+
+        class_macro: class_macro {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp C &kp L &kp A &kp S &kp S>;
+            label = "CLASS_MACRO";
+        };
     };
 
     combos {
@@ -138,10 +152,10 @@
 
         hotkeys_layer {
             bindings = <
-&trans          &trans  &trans  &trans               &trans  &kp LC(LS(T))    &kp LC(KP_PLUS)     &kp LC(KP_MINUS)  &kp LG(LA(K))  &trans  &trans  &trans
-&trans          &trans  &trans  &trans               &trans  &trans           &kp LC(LS(SLASH))   &kp LC(SLASH)     &trans         &trans  &trans  &trans
-&kp LEFT_SHIFT  &trans  &trans  &kp C_AL_CALCULATOR  &trans  &trans           &kp LA(LEFT_SHIFT)  &trans            &trans         &trans  &trans  &trans
-                                &trans               &trans  &trans           &trans              &trans            &trans
+&trans          &trans  &trans  &class_macro         &prop_macro  &kp LC(LS(T))    &kp LC(KP_PLUS)     &kp LC(KP_MINUS)  &kp LG(LA(K))  &trans  &trans  &trans
+&trans          &trans  &trans  &trans               &trans       &trans           &kp LC(LS(SLASH))   &kp LC(SLASH)     &trans         &trans  &trans  &trans
+&kp LEFT_SHIFT  &trans  &trans  &kp C_AL_CALCULATOR  &trans       &trans           &kp LA(LEFT_SHIFT)  &trans            &trans         &trans  &trans  &trans
+                                &trans               &trans       &trans           &trans              &trans            &trans
             >;
         };
 
